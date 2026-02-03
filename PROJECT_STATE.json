@@ -2,7 +2,7 @@
   "project": "Nexus Zero",
   "version": "1.0.0",
   "created_at": "2026-02-03T09:34:56.117311+00:00",
-  "updated_at": "2026-02-03T10:20:58.548840+00:00",
+  "updated_at": "2026-02-03T11:17:30.017183+00:00",
   "current_phase": "",
   "user_stories": [
     {
@@ -134,23 +134,37 @@
     {
       "id": "US-010",
       "title": "邮件推送功能(gog skill)",
-      "status": "pending",
+      "status": "completed",
       "dependencies": [
         "US-009"
       ],
       "assignee": "subagent",
-      "session_key": "pending",
+      "session_key": null,
       "started_at": "2026-02-03T09:35:53.948709+00:00",
+      "completed_at": "2026-02-03T11:03:41.536144+00:00",
+      "commit_hash": "83cd27b",
+      "blocker": null
+    },
+    {
+      "id": "US-011",
+      "title": "任务调度系统 (APScheduler)",
+      "status": "in_progress",
+      "dependencies": [
+        "US-010"
+      ],
+      "assignee": "Gremins",
+      "session_key": "main-agent",
+      "started_at": "2026-02-03T11:17:30.017109+00:00",
       "completed_at": null,
       "commit_hash": null,
       "blocker": null
     }
   ],
   "metrics": {
-    "total": 10,
-    "completed": 9,
-    "in_progress": 0,
-    "pending": 1,
+    "total": 11,
+    "completed": 10,
+    "in_progress": 1,
+    "pending": 0,
     "blocked": 0
   }
 }
