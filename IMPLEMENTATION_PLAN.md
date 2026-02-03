@@ -1,7 +1,10 @@
-# InfoFlow Platform - Implementation Plan
+# Nexus Zero - Implementation Plan
 
-> Branch: `ralph/infoflow-platform`  
-> Generated from PRD analysis for Ralph Planning
+> **Nexus**: 连接所有数据流的中心节点  
+> **Zero**: 最有价值/最为优质的信息筛选中心  
+> 
+> Branch: `main`  
+> Repository: https://github.com/Mike4Ellis/nexus-zero
 
 ---
 

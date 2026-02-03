@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "infoflow"
+name = "nexus-zero"
 version = "0.1.0"
-description = "多源信息聚合与智能筛选平台"
+description = "Nexus Zero - 智能信息聚合与筛选中心"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
@@ -53,7 +53,7 @@ dev = [
 ]
 
 [project.scripts]
-infoflow = "src.cli:main"
+nexus-zero = "src.cli:main"
 
 [tool.mypy]
 python_version = "3.11"
