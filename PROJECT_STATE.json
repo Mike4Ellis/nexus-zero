@@ -2,7 +2,7 @@
   "project": "Nexus Zero",
   "version": "1.0.0",
   "created_at": "2026-02-03T09:34:56.117311+00:00",
-  "updated_at": "2026-02-03T09:35:53.948770+00:00",
+  "updated_at": "2026-02-03T10:20:58.548840+00:00",
   "current_phase": "",
   "user_stories": [
     {
@@ -134,7 +134,7 @@
     {
       "id": "US-010",
       "title": "邮件推送功能(gog skill)",
-      "status": "in_progress",
+      "status": "pending",
       "dependencies": [
         "US-009"
       ],
@@ -149,8 +149,8 @@
   "metrics": {
     "total": 10,
     "completed": 9,
-    "in_progress": 1,
-    "pending": 0,
+    "in_progress": 0,
+    "pending": 1,
     "blocked": 0
   }
 }

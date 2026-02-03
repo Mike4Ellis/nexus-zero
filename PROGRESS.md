@@ -8,9 +8,9 @@
 ## 📊 状态概览
 
 - ✅ 已完成：9
-- 🔄 进行中：1
+- 🔄 进行中：0
 - ⏳ 待开始：0
-- 🚫 阻塞中：0
+- 🚫 阻塞中：1
 
 ---
 
@@ -61,7 +61,8 @@
 - 依赖：US-008
 - 提交：7a36b39
 
-### 🔄 US-010: 邮件推送功能(gog skill)
-- 状态：in_progress
+### 🚫 US-010: 邮件推送功能(gog skill)
+- 状态：blocked
 - 负责人：subagent
 - 依赖：US-009
+- 阻塞原因：429 quota exceeded - subagent failed
