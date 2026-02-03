@@ -2,7 +2,7 @@
   "project": "Nexus Zero",
   "version": "1.0.0",
   "created_at": "2026-02-03T09:34:56.117311+00:00",
-  "updated_at": "2026-02-03T11:17:30.017183+00:00",
+  "updated_at": "2026-02-03T12:18:00.930349+00:00",
   "current_phase": "",
   "user_stories": [
     {
@@ -148,21 +148,35 @@
     {
       "id": "US-011",
       "title": "任务调度系统 (APScheduler)",
-      "status": "in_progress",
+      "status": "completed",
       "dependencies": [
         "US-010"
       ],
       "assignee": "Gremins",
-      "session_key": "main-agent",
+      "session_key": null,
       "started_at": "2026-02-03T11:17:30.017109+00:00",
+      "completed_at": "2026-02-03T11:24:09.764211+00:00",
+      "commit_hash": "837e090",
+      "blocker": null
+    },
+    {
+      "id": "US-012",
+      "title": "Web管理界面 (Next.js)",
+      "status": "in_progress",
+      "dependencies": [
+        "US-011"
+      ],
+      "assignee": "Gremins",
+      "session_key": "main-agent",
+      "started_at": "2026-02-03T12:18:00.930299+00:00",
       "completed_at": null,
       "commit_hash": null,
       "blocker": null
     }
   ],
   "metrics": {
-    "total": 11,
-    "completed": 10,
+    "total": 12,
+    "completed": 11,
     "in_progress": 1,
     "pending": 0,
     "blocked": 0
