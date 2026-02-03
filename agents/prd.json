@@ -1,0 +1,236 @@
+{
+  "project": "InfoFlow Platform",
+  "branchName": "ralph/infoflow-platform",
+  "description": "多源信息聚合与智能筛选平台，支持X/Reddit/小红书等内容抓取、双指标质量评估、每日简报生成",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "初始化项目结构与数据库Schema",
+      "description": "作为开发者，我需要建立项目基础结构和数据库表，为后续功能提供支撑",
+      "acceptanceCriteria": [
+        "创建项目目录结构: src/{fetcher,scorer,classifier,brief,web,models,utils}",
+        "设计数据库Schema: contents, sources, scores, tags, daily_briefs 表",
+        "使用SQLAlchemy定义ORM模型",
+        "创建Alembic迁移脚本",
+        "运行迁移，数据库初始化成功",
+        "Typecheck passes"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "实现X(Twitter)内容抓取器",
+      "description": "作为用户，我希望平台能自动抓取X平台的内容，获取推文、互动数据等信息",
+      "acceptanceCriteria": [
+        "封装X API客户端(支持官方API或第三方库)",
+        "实现关键词/用户时间线抓取",
+        "提取推文内容、作者、发布时间、互动数据(点赞/转发/评论)",
+        "实现增量抓取(基于since_id或时间戳)",
+        "添加失败重试机制(指数退避，最多3次)",
+        "数据写入contents表，标记source='x'",
+        "Typecheck passes"
+      ],
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "实现Reddit内容抓取器",
+      "description": "作为用户，我希望平台能抓取Reddit指定subreddit的热门/最新帖子",
+      "acceptanceCriteria": [
+        "使用PRAW库封装Reddit API",
+        "支持配置多个subreddit订阅列表",
+        "抓取帖子标题、内容、作者、upvotes、评论数",
+        "实现增量抓取(基于post创建时间)",
+        "数据写入contents表，标记source='reddit'",
+        "Typecheck passes"
+      ],
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "实现RSS/Blog内容抓取器",
+      "description": "作为用户，我希望平台能订阅RSS源，自动抓取博客和新闻网站更新",
+      "acceptanceCriteria": [
+        "集成blogwatcher skill或使用feedparser",
+        "支持添加/删除RSS订阅源",
+        "解析文章标题、摘要、链接、发布时间",
+        "实现增量抓取(基于文章发布时间)",
+        "数据写入contents表，标记source='rss'",
+        "Typecheck passes"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "实现热度评分算法",
+      "description": "作为用户，我希望系统能自动评估内容的当前热度，识别热门内容",
+      "acceptanceCriteria": [
+        "设计热度分计算公式: 综合阅读量、点赞、转发、评论、收藏",
+        "实现时间衰减函数(24h内满分，7天后大幅衰减)",
+        "不同平台指标归一化到统一量纲(0-100)",
+        "计算结果写入scores表，标记score_type='heat'",
+        "提供手动触发评分脚本",
+        "Typecheck passes"
+      ],
+      "priority": 5,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-006",
+      "title": "实现潜力评分算法",
+      "description": "作为用户，我希望系统能从冷门内容中发现高质量信息，挖掘被埋没的宝藏",
+      "acceptanceCriteria": [
+        "设计潜力分计算公式: 内容质量、作者权重、互动率、增长趋势、领域稀缺性",
+        "使用NLP分析文本深度和信息量(可选: 集成summarize skill)",
+        "计算作者历史平均表现作为权重",
+        "计算互动率 = (点赞+评论)/阅读量",
+        "识别增长趋势(短时间内互动增速)",
+        "计算领域稀缺性(该主题近期出现频率)",
+        "结果写入scores表，标记score_type='potential'",
+        "Typecheck passes"
+      ],
+      "priority": 6,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-007",
+      "title": "实现内容自动分类与标签",
+      "description": "作为用户，我希望内容能自动分类到不同主题，并打上相关标签",
+      "acceptanceCriteria": [
+        "使用NLP或关键词匹配进行主题分类(AI/科技/投资/生活/娱乐/设计)",
+        "实现情感分析(正面/负面/中性)",
+        "自动提取关键词、人名、公司、技术栈作为标签",
+        "分类结果写入content_tags关联表",
+        "支持用户手动添加自定义标签",
+        "Typecheck passes"
+      ],
+      "priority": 7,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-008",
+      "title": "实现每日简报生成器(Markdown)",
+      "description": "作为用户，我希望每天早上收到一份精选简报，包含热门和潜力内容",
+      "acceptanceCriteria": [
+        "设计简报模板: 今日热门、潜力发现、趋势洞察、按主题浏览",
+        "查询Top 10-15综合评分最高的内容",
+        "每个分类选取3-5条精选",
+        "特别推荐3-5条高潜力内容",
+        "生成统计摘要(收录总数、各平台占比)",
+        "使用Jinja2渲染Markdown格式简报",
+        "保存到daily_briefs表",
+        "Typecheck passes"
+      ],
+      "priority": 8,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-009",
+      "title": "实现Telegram Bot推送",
+      "description": "作为用户，我希望通过Telegram接收每日简报",
+      "acceptanceCriteria": [
+        "创建Telegram Bot(使用BotFather)",
+        "封装消息发送接口",
+        "支持发送Markdown格式消息",
+        "长内容自动分页(避免Telegram长度限制)",
+        "添加简报发送命令/定时任务",
+        "Typecheck passes"
+      ],
+      "priority": 9,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-010",
+      "title": "实现邮件推送(集成gog skill)",
+      "description": "作为用户，我希望通过邮件接收精美的HTML格式简报",
+      "acceptanceCriteria": [
+        "设计HTML邮件模板(响应式、美观)",
+        "集成gog skill发送邮件",
+        "支持纯文本和HTML双格式",
+        "邮件主题包含日期和简报摘要",
+        "添加邮件发送配置(收件人、发送时间)",
+        "Typecheck passes"
+      ],
+      "priority": 10,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-011",
+      "title": "实现任务调度系统",
+      "description": "作为开发者，我需要定时执行抓取、评分、简报生成等任务",
+      "acceptanceCriteria": [
+        "集成APScheduler或Celery",
+        "配置定时任务: 每2-4小时抓取、每日早8点生成简报",
+        "支持任务手动触发",
+        "添加任务执行日志",
+        "失败任务告警/重试",
+        "Typecheck passes"
+      ],
+      "priority": 11,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-012",
+      "title": "实现数据导出功能",
+      "description": "作为用户，我希望导出数据到Excel进行进一步分析",
+      "acceptanceCriteria": [
+        "支持按日期范围筛选导出",
+        "支持按主题/平台筛选导出",
+        "导出字段: 标题、内容、链接、来源、作者、互动数据、评分",
+        "生成.xlsx文件",
+        "提供CLI导出命令",
+        "Typecheck passes"
+      ],
+      "priority": 12,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-013",
+      "title": "实现小红书内容抓取器",
+      "description": "作为用户，我希望抓取小红书的内容(需要解决签名验证)",
+      "acceptanceCriteria": [
+        "调研小红书API/逆向方案",
+        "实现笔记抓取(标题、内容、图片、点赞/收藏/评论数)",
+        "处理反爬机制(代理、请求头轮换)",
+        "数据写入contents表，标记source='xiaohongshu'",
+        "Typecheck passes"
+      ],
+      "priority": 13,
+      "passes": false,
+      "notes": "P1优先级，可在MVP后实现"
+    },
+    {
+      "id": "US-014",
+      "title": "构建Web管理界面",
+      "description": "作为用户，我希望能通过网页浏览内容、搜索、查看统计",
+      "acceptanceCriteria": [
+        "使用Next.js + Tailwind CSS搭建前端",
+        "FastAPI提供REST API",
+        "今日简报页面(卡片式布局)",
+        "历史归档页面(日历视图、分页)",
+        "内容搜索页面(关键词、筛选器)",
+        "数据统计面板(图表可视化)",
+        "Typecheck passes"
+      ],
+      "priority": 14,
+      "passes": false,
+      "notes": "P1优先级，可在核心功能后实现"
+    }
+  ]
+}
