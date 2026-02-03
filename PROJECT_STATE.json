@@ -1,0 +1,156 @@
+{
+  "project": "Nexus Zero",
+  "version": "1.0.0",
+  "created_at": "2026-02-03T09:34:56.117311+00:00",
+  "updated_at": "2026-02-03T09:35:53.948770+00:00",
+  "current_phase": "",
+  "user_stories": [
+    {
+      "id": "US-001",
+      "title": "项目初始化与数据库设计",
+      "status": "completed",
+      "dependencies": [
+        ""
+      ],
+      "assignee": null,
+      "session_key": null,
+      "started_at": null,
+      "completed_at": "2026-02-03T09:35:53.215189+00:00",
+      "commit_hash": "7a36b39",
+      "blocker": null
+    },
+    {
+      "id": "US-002",
+      "title": "Fetcher基类与X/Twitter抓取器",
+      "status": "completed",
+      "dependencies": [
+        "US-001"
+      ],
+      "assignee": null,
+      "session_key": null,
+      "started_at": null,
+      "completed_at": "2026-02-03T09:35:53.283586+00:00",
+      "commit_hash": "7a36b39",
+      "blocker": null
+    },
+    {
+      "id": "US-003",
+      "title": "Reddit抓取器",
+      "status": "completed",
+      "dependencies": [
+        "US-002"
+      ],
+      "assignee": null,
+      "session_key": null,
+      "started_at": null,
+      "completed_at": "2026-02-03T09:35:53.361111+00:00",
+      "commit_hash": "7a36b39",
+      "blocker": null
+    },
+    {
+      "id": "US-004",
+      "title": "RSS抓取器",
+      "status": "completed",
+      "dependencies": [
+        "US-003"
+      ],
+      "assignee": null,
+      "session_key": null,
+      "started_at": null,
+      "completed_at": "2026-02-03T09:35:53.439661+00:00",
+      "commit_hash": "7a36b39",
+      "blocker": null
+    },
+    {
+      "id": "US-005",
+      "title": "热度评分算法",
+      "status": "completed",
+      "dependencies": [
+        "US-004"
+      ],
+      "assignee": null,
+      "session_key": null,
+      "started_at": null,
+      "completed_at": "2026-02-03T09:35:53.507848+00:00",
+      "commit_hash": "7a36b39",
+      "blocker": null
+    },
+    {
+      "id": "US-006",
+      "title": "潜力评分算法",
+      "status": "completed",
+      "dependencies": [
+        "US-005"
+      ],
+      "assignee": null,
+      "session_key": null,
+      "started_at": null,
+      "completed_at": "2026-02-03T09:35:53.576719+00:00",
+      "commit_hash": "7a36b39",
+      "blocker": null
+    },
+    {
+      "id": "US-007",
+      "title": "内容自动分类",
+      "status": "completed",
+      "dependencies": [
+        "US-006"
+      ],
+      "assignee": null,
+      "session_key": null,
+      "started_at": null,
+      "completed_at": "2026-02-03T09:35:53.650308+00:00",
+      "commit_hash": "7a36b39",
+      "blocker": null
+    },
+    {
+      "id": "US-008",
+      "title": "简报生成器",
+      "status": "completed",
+      "dependencies": [
+        "US-007"
+      ],
+      "assignee": null,
+      "session_key": null,
+      "started_at": null,
+      "completed_at": "2026-02-03T09:35:53.719059+00:00",
+      "commit_hash": "7a36b39",
+      "blocker": null
+    },
+    {
+      "id": "US-009",
+      "title": "Telegram Bot推送",
+      "status": "completed",
+      "dependencies": [
+        "US-008"
+      ],
+      "assignee": null,
+      "session_key": null,
+      "started_at": null,
+      "completed_at": "2026-02-03T09:35:53.787848+00:00",
+      "commit_hash": "7a36b39",
+      "blocker": null
+    },
+    {
+      "id": "US-010",
+      "title": "邮件推送功能(gog skill)",
+      "status": "in_progress",
+      "dependencies": [
+        "US-009"
+      ],
+      "assignee": "subagent",
+      "session_key": "pending",
+      "started_at": "2026-02-03T09:35:53.948709+00:00",
+      "completed_at": null,
+      "commit_hash": null,
+      "blocker": null
+    }
+  ],
+  "metrics": {
+    "total": 10,
+    "completed": 9,
+    "in_progress": 1,
+    "pending": 0,
+    "blocked": 0
+  }
+}
