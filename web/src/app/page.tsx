@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-[#f5f5f5] font-mono">
       {/* Background grid */}
-      <div className="fixed inset-0 bg-grid opacity-20 pointer-events-none" />
+      <div className="fixed inset-0 bg-grid opacity-20 pointer-events-none" aria-hidden="true" />
       
       {/* Content */}
       <div className="relative z-10">
@@ -40,7 +40,7 @@ export default function Home() {
               NEXUS ZERO // v1.0.0
             </div>
             <div className="flex items-center gap-2">
-              <span className="status-dot status-active animate-pulse" />
+              <span className="status-dot status-active animate-pulse" aria-hidden="true" />
               <span className="text-sm text-[#00ff88]">SYSTEM ONLINE</span>
             </div>
           </div>

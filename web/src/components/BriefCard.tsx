@@ -15,20 +15,35 @@ interface Brief {
 export function BriefCard() {
   const [brief, setBrief] = useState<Brief | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // TODO: Fetch from API
-    // For now, use mock data
-    setBrief({
-      id: 1,
-      title: "Nexus Zero 每日简报 - 2026-02-03",
-      date: "2026-02-03",
-      totalContents: 42,
-      platforms: { x: 15, reddit: 12, rss: 15 },
-      heatTopCount: 10,
-      potentialCount: 5,
-    });
-    setLoading(false);
+    async function fetchLatestBrief() {
+      try {
+        const response = await fetch('/api/briefs/latest');
+        if (!response.ok) {
+          throw new Error('Failed to fetch brief');
+        }
+        const data = await response.json();
+        setBrief(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error');
+        // Fallback to mock data if API fails
+        setBrief({
+          id: 1,
+          title: "Nexus Zero 每日简报 - 2026-02-03",
+          date: "2026-02-03",
+          totalContents: 42,
+          platforms: { x: 15, reddit: 12, rss: 15 },
+          heatTopCount: 10,
+          potentialCount: 5,
+        });
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchLatestBrief();
   }, []);
 
   if (loading) {

@@ -2,7 +2,7 @@
   "project": "Nexus Zero",
   "version": "1.0.0",
   "created_at": "2026-02-03T09:34:56.117311+00:00",
-  "updated_at": "2026-02-03T14:16:22.747942+00:00",
+  "updated_at": "2026-02-03T14:23:04.885291+00:00",
   "current_phase": "",
   "user_stories": [
     {
@@ -190,22 +190,22 @@
     {
       "id": "US-014",
       "title": "数据统计与导出",
-      "status": "in_progress",
+      "status": "completed",
       "dependencies": [
         "US-013"
       ],
       "assignee": "Gremins",
-      "session_key": "main-agent",
+      "session_key": null,
       "started_at": "2026-02-03T14:16:22.747884+00:00",
-      "completed_at": null,
-      "commit_hash": null,
+      "completed_at": "2026-02-03T14:23:04.885239+00:00",
+      "commit_hash": "fb44b5f",
       "blocker": null
     }
   ],
   "metrics": {
     "total": 14,
-    "completed": 13,
-    "in_progress": 1,
+    "completed": 14,
+    "in_progress": 0,
     "pending": 0,
     "blocked": 0
   }
