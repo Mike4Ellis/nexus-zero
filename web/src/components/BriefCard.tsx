@@ -48,7 +48,7 @@ export function BriefCard() {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow-md p-6 animate-pulse">
+      <div className="bg-white rounded-lg shadow-md p-6 animate-pulse" role="status" aria-label="加载简报中">
         <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
         <div className="h-4 bg-gray-200 rounded w-1/2"></div>
       </div>
@@ -112,7 +112,10 @@ export function BriefCard() {
       
       <div className="bg-gray-50 px-6 py-4 flex justify-between items-center">
         <span className="text-sm text-gray-500">由 Nexus Zero 自动生成</span>
-        <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+        <button 
+          className="text-blue-600 hover:text-blue-800 text-sm font-medium focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
+          aria-label="查看简报详情"
+        >
           查看详情 →
         </button>
       </div>
